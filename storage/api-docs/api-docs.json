@@ -1,0 +1,61 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Suscripciones",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/api/suscripciones": {},
+        "/suscripciones": {
+            "get": {
+                "summary": "Obtener suscripciones",
+                "operationId": "750a46052d9e5a025b77572ba4c96d91",
+                "parameters": [
+                    {
+                        "name": "reference",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^reference: eq: .+$"
+                        }
+                    },
+                    {
+                        "name": "product_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^product_id: in: \\\\d+(,\\\\s?\\\\d+)*$"
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^amount: gte: \\\\d+(\\\\.\\\\d+)?$"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "422": {
+                        "description": "Parámetros inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno"
+                    }
+                }
+            }
+        }
+    }
+}
